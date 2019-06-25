@@ -14,7 +14,10 @@ public abstract class ServerConnector {
 			if (e.getGui() instanceof GuiIngameMenu) {
 				ServerConnector connector = forCurrentServer();
 				e.getButtonList().get(0).displayString = I18n.format(connector.getDisconnectButtonText());
-				e.getButtonList().get(4).enabled = connector.canOpenToLan();
+				if (e.getButtonList().size()>4){
+				    //Replay mod use a 4 button GUI list for some reasons
+                    e.getButtonList().get(4).enabled = connector.canOpenToLan();
+                }
 			}
 		});
 		EventManager.addGuiActionPerformedListener(e -> {
